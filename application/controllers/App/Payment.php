@@ -1,16 +1,37 @@
 <?php
 //MID: SE17042422
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Payment extends CI_Controller {
 	public function wallet(){
 		global $Auth;
-		if($Auth){
-			$tel = $this->input->post("telephone",true);
+        $usernameTW = "xjoops@gmail.com";
+        $passwordTW = "Qq0912871659";
+        $mobileNumber = "0800543635";
+        $truewallet = new TrueWallet($usernameTW,$passwordTW);
+       try{
+           $a = ($truewallet->RequestLoginOTP());
+           Alert(false,$a);
+
+       }catch (Exception $e){
+           Alert(false,$e);
+       }
+		exit();
+		if(!$Auth){
+		  $tel = $this->input->post("telephone",true);
 			$reference_id = $this->input->post("refer",true);
 			$amount = $this->input->post("amount",true);
-			
-		}
+			$truewallet = new TrueWallet($usernameTW,$passwordTW);
+            print_r($truewallet->RequestLoginOTP());
+
+            // $truewallet->SubmitLoginOTP($OTP,$mobileNumber,$OTP_REFERENCE);
+           return $referenceToken = $truewallet->reference_token;
+            $transactions = $tw->getTransaction(50); // Fetch last 50 transactions. (within the last 30 days)
+            foreach ($transactions["data"]["activities"] as $report) {
+                // Fetch transaction details.
+                print_r($tw->GetTransactionReport($report["report_id"]));
+            }
+            $truewallet = new TrueWallet("","",$referenceToken);
+        }
 		return Alert(false,"กรุณาเข้าสู่ระบบสมาชิก เพื่อดำเนินการต่อ");
 	}
 	public function truemoney(){

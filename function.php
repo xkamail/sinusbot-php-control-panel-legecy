@@ -1,10 +1,16 @@
 <?php 
- try { 
+
+/*
+ *
+ *  try {
  $Main = (object) array( "sql" => new PDO("mysql:host=".$ConfigKM["mysql"]["host"].";dbname=".$ConfigKM["mysql"]["dbname"].";charset=utf8", $ConfigKM["mysql"]["username"], $ConfigKM["mysql"]["password"]) );
  } catch (Exception $e) { exit("Error -> Database Connect");
  } function rdr($url){ header("location: ".$url);
  exit();
- } 
+ }
+
+ */
+
  function query($sql,$array=array()){ global $Main;
  $q = $Main->sql->prepare($sql);
  $q->execute($array);

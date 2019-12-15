@@ -1,9 +1,9 @@
 <?php
 $ConfigKM = array(
 	"mysql" => array(
-		"host" => "localhost",
+		"host" => "127.0.0.1",
 		"username" => "root",
-		"password" => "12345678",
+		"password" => "123456",
 		"dbname" => "music"
 		),
 
